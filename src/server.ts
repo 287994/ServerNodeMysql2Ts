@@ -1,0 +1,23 @@
+import express from 'express';
+import routes from './routes/index';
+
+interface ServerOptions{
+    port: number;
+}
+
+export class Server{
+    private readonly port: number;
+    private readonly server=express();
+
+    constructor(options:ServerOptions){
+        this.port=options.port;
+        this.server.use(express.json());
+        this.server.use('/api/v1/products',routes);
+    }
+
+    start(){
+        this.server.listen(this.port, ()=>{
+            console.log(`Server running on port: ${this.port}`);
+        });
+    }
+}
