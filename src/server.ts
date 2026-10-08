@@ -12,7 +12,7 @@ export class Server{
     constructor(options:ServerOptions){
         this.port=options.port;
         this.server.use(express.json());
-        this.server.use('/api/v1/products',routes);
+        this.server.use('/api/v1',routes);
     }
 
     start(){
